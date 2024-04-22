@@ -1,0 +1,43 @@
+{
+  "annotations": {
+    "changelogDate": "20240422141153"
+  },
+  "applications": ["piro360"],
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "s3urltovideo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "created",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "name": "Piro",
+  "relationships": [
+    {
+      "otherEntityName": "user",
+      "relationshipName": "owner",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipWithBuiltInEntity": true
+    },
+    {
+      "otherEntityName": "tag",
+      "otherEntityRelationshipName": "piros",
+      "relationshipName": "tags",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

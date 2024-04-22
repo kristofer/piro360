@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity Tag.
+    -->
+    <changeSet id="20240422141154-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="owner_id"
+                                 baseTableName="tag"
+                                 constraintName="fk_tag__owner_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="tag_id"
+                                 baseTableName="rel_tag__piros"
+                                 constraintName="fk_rel_tag__piros__tag_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tag"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="piros_id"
+                                 baseTableName="rel_tag__piros"
+                                 constraintName="fk_rel_tag__piros__piros_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="piro"
+                                 />
+    </changeSet>
+</databaseChangeLog>

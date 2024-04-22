@@ -1,0 +1,34 @@
+{
+  "annotations": {
+    "changelogDate": "20240422141154"
+  },
+  "applications": ["piro360"],
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Tag",
+  "relationships": [
+    {
+      "otherEntityName": "user",
+      "relationshipName": "owner",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipWithBuiltInEntity": true
+    },
+    {
+      "otherEntityName": "piro",
+      "otherEntityRelationshipName": "tags",
+      "relationshipName": "piros",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

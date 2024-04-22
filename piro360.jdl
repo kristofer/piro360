@@ -1,0 +1,31 @@
+application {
+  config {
+    baseName piro360,
+    packageName rocks.zipcode,
+    applicationType monolith,
+    prodDatabaseType postgresql,
+  }
+  entities *
+}
+
+entity Piro {
+  title String required
+  description String
+  s3urltovideo String
+  created LocalDate
+}
+
+entity Tag {
+  title String
+  description String
+}
+
+relationship ManyToOne {
+  Tag{owner} to User with builtInEntity
+  Piro{owner} to User with builtInEntity
+}
+
+relationship ManyToMany {
+  Tag{Piros} to Piro{Tags}
+}
+
