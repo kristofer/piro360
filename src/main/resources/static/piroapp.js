@@ -1,21 +1,17 @@
 const API_URL = `http://localhost:8080`;
 
-// uses FETCH web api
-// https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
-//
-//
-function fetchTicketsData() {
-  fetch(`${API_URL}/api/tickets`)
+function fetchData() {
+  fetch(`${API_URL}/api/piros`)
     .then(res => {
       //console.log("res is ", Object.prototype.toString.call(res));
       return res.json();
     })
     .then(data => {
-      showTicketList(data);
+      show(data);
     })
     .catch(error => {
       console.log(`Error Fetching data : ${error}`);
-      document.getElementById('posts').innerHTML = 'Error Loading Tickets Data';
+      document.getElementById('posts').innerHTML = 'Error Loading Data';
     });
 }
 
@@ -27,29 +23,31 @@ function dateOf(date) {
   return humanDateFormat;
 }
 
-function showTicketList(data) {
+function show(data) {
   // the data parameter will be a JS array of JS objects
   // this uses a combination of "HTML building" DOM methods (the document createElements) and
   // simple string interpolation (see the 'a' tag on title)
   // both are valid ways of building the html.
-  const posts = document.getElementById('posts');
+  const ul = document.getElementById('posts');
   const list = document.createDocumentFragment();
 
   data.map(function (post) {
-    let div = document.createElement('div');
+    console.log('Piro:', post);
+    let li = document.createElement('li');
     let title = document.createElement('h3');
-    title.innerHTML = `<a href="/ticketdetail.html?ticketid=${post.id}">${post.title}</a>`;
+    let body = document.createElement('p');
+    let by = document.createElement('p');
+    title.innerHTML = `<a href="/api/piros/${post.id}">${post.title}</a>`;
+    body.innerHTML = `${post.description}`;
+    by.innerHTML = `${post.created} - ${post.key}`;
 
-    div.appendChild(title);
-    list.appendChild(div);
+    li.appendChild(title);
+    li.appendChild(body);
+    li.appendChild(by);
+    list.appendChild(li);
   });
 
-  posts.appendChild(list);
+  ul.appendChild(list);
 }
 
-function handlePage() {
-  console.log('load all tickets');
-  fetchTicketsData();
-}
-
-handlePage();
+fetchData();

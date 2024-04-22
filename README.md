@@ -4,6 +4,21 @@ a simple social media app.
 
 ---
 
+in `SecurityConfiguration.java` you have to diable security on the `/api/**` rule
+
+```
+                    .requestMatchers(mvc.pattern("/api/**")).permitAll()
+//                    .requestMatchers(mvc.pattern("/api/**")).authenticated()
+```
+
+and enable the jhipster to serve the static files like `*.html`
+
+```
+.requestMatchers(mvc.pattern("/index.html"),
+  mvc.pattern("/*.html"),
+  mvc.pattern("/*.js"),
+```
+
 # JHipster generated application
 
 This application was generated using JHipster 8.3.0, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v8.3.0](https://www.jhipster.tech/documentation-archive/v8.3.0).
