@@ -1,26 +1,26 @@
 const API_URL = `http://localhost:8080`;
 
-function fetchTicket(ticketid) {
-  fetch(`${API_URL}/api/tickets/${ticketid}`)
+function fetchPiro(piroid) {
+  fetch(`${API_URL}/api/piros/${piroid}`)
     .then(res => {
       //console.log("res is ", Object.prototype.toString.call(res));
       return res.json();
     })
     .then(data => {
-      showTicketDetail(data);
+      showPiroDetail(data);
     })
     .catch(error => {
       console.log(`Error Fetching data : ${error}`);
-      document.getElementById('posts').innerHTML = 'Error Loading Single Ticket Data';
+      document.getElementById('posts').innerHTML = 'Error Loading Single Piro Data';
     });
 }
 
-function parseTicketId() {
+function parsePiroId() {
   try {
     var url_string = window.location.href.toLowerCase();
     var url = new URL(url_string);
-    var ticketid = url.searchParams.get('ticketid');
-    return ticketid;
+    var piroid = url.searchParams.get('piroid');
+    return piroid;
   } catch (err) {
     console.log("Issues with Parsing URL Parameter's - " + err);
     return '0';
@@ -34,7 +34,7 @@ function dateOf(date) {
   return humanDateFormat;
 }
 
-function showTicketDetail(post) {
+function showPiroDetail(post) {
   // the data parameter will be a JS array of JS objects
   // this uses a combination of "HTML building" DOM methods (the document createElements) and
   // simple string interpolation (see the 'a' tag on title)
@@ -42,7 +42,7 @@ function showTicketDetail(post) {
   const ul = document.getElementById('post');
   const detail = document.createDocumentFragment();
 
-  console.log('Ticket:', post);
+  console.log('Piro:', post);
   let li = document.createElement('div');
   let title = document.createElement('h2');
   let body = document.createElement('p');
@@ -50,7 +50,7 @@ function showTicketDetail(post) {
   title.innerHTML = `${post.title}`;
   body.innerHTML = `${post.description}`;
   //let postedTime = dateOf(post.time)
-  by.innerHTML = `${post.date} - ${post.reportedBy}`;
+  by.innerHTML = `${post.created} - ${post.key}`;
 
   li.appendChild(title);
   li.appendChild(body);
@@ -61,12 +61,12 @@ function showTicketDetail(post) {
 }
 
 function handlePage() {
-  let ticketid = parseTicketId();
-  console.log('ticketId: ', ticketid);
+  let piroid = parsePiroId();
+  console.log('piroId: ', piroid);
 
-  if (ticketid != null) {
-    console.log('found a ticketId');
-    fetchTicket(ticketid);
+  if (piroid != null) {
+    console.log('found a piroId');
+    fetchPiro(piroid);
   }
 }
 

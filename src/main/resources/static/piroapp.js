@@ -37,7 +37,7 @@ function show(data) {
     let title = document.createElement('h3');
     let body = document.createElement('p');
     let by = document.createElement('p');
-    title.innerHTML = `<a href="/api/piros/${post.id}">${post.title}</a>`;
+    title.innerHTML = `<a href="/pirodetail.html?piroid=${post.id}">${post.title}</a>`;
     body.innerHTML = `${post.description}`;
     by.innerHTML = `${post.created} - ${post.key}`;
 
