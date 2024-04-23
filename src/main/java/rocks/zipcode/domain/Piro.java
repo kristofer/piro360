@@ -48,8 +48,6 @@ public class Piro implements Serializable {
     @JsonIgnoreProperties(value = { "owner", "piros" }, allowSetters = true)
     private Set<Tag> tags = new HashSet<>();
 
-    public Piro() {}
-
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {

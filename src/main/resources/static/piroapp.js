@@ -23,8 +23,6 @@ function dateOf(date) {
   return humanDateFormat;
 }
 
-// http://localhost:8080/pirodetail.html?piroid=1
-
 function show(data) {
   // the data parameter will be a JS array of JS objects
   // this uses a combination of "HTML building" DOM methods (the document createElements) and
