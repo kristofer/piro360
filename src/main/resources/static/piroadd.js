@@ -11,20 +11,21 @@ function doPostOfForm(event) {
     object[name] = value;
   }
   var json = JSON.stringify(object);
-  console.log('json is ', json);
-
+  // only need to stringify once
   postJSON(json);
 }
 
 async function postJSON(data) {
   try {
-    const response = await fetch(`${API_URL}/api/piros/`, {
+    const response = await fetch(`${API_URL}/api/piros`, {
       method: 'POST', // or 'PUT'
       headers: {
         accept: '*/*',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: data, // This was ALSO Stringifying the data
+      // body: JSON.stringify(data)
+      // but this is already a string because I did the stringify above
     });
 
     const result = await response.json();
