@@ -4,25 +4,48 @@ a simple social media app.
 
 ---
 
+### Get a very simple HTML file to the page from within the project
+
+make a folder named `static` in `src/main/resources` and put the `hello.html` file in it.
+Also add `hello2.html` file in the `static` folder.
+
+### Focus on getting the demo data in the Piro table to the page
+
+Do something easy first.
+
+Add the Vanilla JS code to `src/main/webapp/app/pirolist.html`
+And get a list of the piros in the database.
+
+And then show the `pirodetail.html` page when the user clicks on the piro in the list of piros.
+
+```
+
 in `SecurityConfiguration.java` you have to diable security on the `/api/**` rule
 
 ```
+
                     .requestMatchers(mvc.pattern("/api/**")).permitAll()
-//                    .requestMatchers(mvc.pattern("/api/**")).authenticated()
+
+// .requestMatchers(mvc.pattern("/api/\*\*")).authenticated()
+
 ```
 
 and enable the jhipster to serve the static files like `*.html`
 
 ```
+
 .requestMatchers(mvc.pattern("/index.html"),
-  mvc.pattern("/*.html"),
-  mvc.pattern("/*.js"),
+mvc.pattern("/_.html"),
+mvc.pattern("/_.js"),
+
 ```
 
 And then try
 
 ```
+
 http://localhost:8080/pirolist.html
+
 ```
 
 # JHipster generated application
@@ -58,7 +81,9 @@ After installing Node, you should be able to run the following command to instal
 You will only need to run this command when dependencies change in [package.json](package.json).
 
 ```
+
 npm install
+
 ```
 
 We use npm scripts and [Webpack][] as our build system.
@@ -67,9 +92,11 @@ Run the following commands in two separate terminals to create a blissful develo
 auto-refreshes when files change on your hard drive.
 
 ```
+
 ./mvnw
 npm start
-```
+
+````
 
 Npm is also used to manage CSS and JavaScript dependencies used in this application. You can upgrade dependencies by
 specifying a newer version in [package.json](package.json). You can also run `npm update` and `npm install` to manage dependencies.
@@ -91,7 +118,7 @@ The service worker initialization code is commented out by default. To enable it
     });
   }
 </script>
-```
+````
 
 Note: [Workbox](https://developers.google.com/web/tools/workbox/) powers JHipster's service worker. It dynamically generates the `service-worker.js` file.
 
